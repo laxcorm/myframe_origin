@@ -1,0 +1,17 @@
+{
+    "name": "adminsasha/myframe",
+    "authors": [
+        {
+            "name": "laxcorm",
+            "email": "2468abc000@gmail.com"
+        }
+    ],
+    "autoload": {
+        "psr-4": {
+            "app\\": "./"
+        }
+    },
+    "require": {
+        "vlucas/phpdotenv": "^5.4"
+    }
+}
