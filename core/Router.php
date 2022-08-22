@@ -38,8 +38,16 @@ class Router
             return $this->renderView($callback);
         }
         if (is_array($callback)) {
-            Application::$app->controller = new $callback[0]();
-            $callback[0] = Application::$app->controller;// в массив вместо имени класса добавляется объект
+            /**
+             * @var \app\core\Controller $controller
+             */
+            $controller = new $callback[0]();
+            Application::$app->controller = $controller;
+            $controller->action = $callback[1];
+            $callback[0] = $controller; // в массив вместо имени класса добавляется объект
+            foreach ($controller->getMiddlewares() as $middleware) {
+                $middleware->execute();
+            }
             
         }
 
@@ -54,10 +62,15 @@ class Router
         return str_replace('{{content}}',$viewContent,$layoutContent);
         
     }
-   
 
-    protected function layoutContent(){
-        $layout = Application::$app->controller->layout;//тут меняется лэйаут
+
+    protected function layoutContent()
+    {
+        $layout = Application::$app->layout;
+        if (Application::$app->controller) {
+            $layout = Application::$app->controller->layout; //тут меняется лэйаут
+        }
+
         ob_start();
         include_once Application::$ROOT_DIR."/views/layouts/$layout.php";
        return ob_get_clean();

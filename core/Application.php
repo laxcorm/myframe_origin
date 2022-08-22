@@ -6,6 +6,7 @@ use app\core\Session;
 
 class Application
 {
+    public string $layout = 'main';
     public string $userClass;
     public static $ROOT_DIR;
     public Router $router;
