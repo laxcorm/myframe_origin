@@ -16,6 +16,7 @@ class Application
     public static Application $app;
     public Controller $controller;
     public Session $session;
+    public View $view;
     public ?DbModel $user;
 
 
@@ -29,7 +30,7 @@ class Application
         $this->session = new Session();
         $this->router = new Router($this->request, $this->response);
         $this->db = new Database($config['db']); //параметры для подключения базы данных
-
+        $this->view = new View;
         $primaryValue=$this->session->get('user');
         if ($primaryValue) {
             $primaryKey = $this->userClass::primaryKey();
@@ -44,8 +45,8 @@ class Application
         try {
             echo $this->router->resolve();
         } catch (\Exception $e) {
-    
-            echo $this->router->renderView('_errors', ['exception' => $e]);
+            $this->response->setStatusCode($e->getCode());
+            echo $this->view->renderView('_errors', ['exception' => $e]);
         }
     }
 

@@ -1,3 +1,7 @@
+<?php
+$this->title='Register';
+?>
+
 <h1>Create Account</h1>
 
 
