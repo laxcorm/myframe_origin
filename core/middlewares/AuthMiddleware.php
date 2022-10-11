@@ -10,7 +10,7 @@ class AuthMiddleware extends BaseMiddleware
     public array $actions = [];
 
 /**
- * @param array $anctions
+ * @param array $actions
  */
 
  public function __construct(array $actions = [])

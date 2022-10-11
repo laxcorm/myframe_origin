@@ -29,7 +29,7 @@ class Application
         $this->response = new Response();
         $this->session = new Session();
         $this->router = new Router($this->request, $this->response);
-        $this->db = new Database($config['db']); //параметры для подключения базы данных
+        $this->db = new Database($config['db']); //п©п╟я─п╟п╪п╣я┌я─я▀ пЄп╩я▐ п©пЎпЄп╨п╩я▌я┤п╣пҐп╦я▐ п╠п╟пЇя▀ пЄп╟пҐпҐя▀я┘
         $this->view = new View;
         $primaryValue=$this->session->get('user');
         if ($primaryValue) {

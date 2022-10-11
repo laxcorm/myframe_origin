@@ -22,7 +22,7 @@ $config = [
 $app  = new Application(dirname(__DIR__), $config);
 
 
-// аргументы не используются в методах контроллера!!!
+// п╟я─пЁя┐п╪п╣пҐя┌я▀ пҐп╣ п╦я│п©пЎп╩я▄пЇя┐я▌я┌я│я▐ п╡ п╪п╣я┌пЎпЄп╟я┘ п╨пЎпҐя┌я─пЎп╩п╩п╣я─п╟!!!
 $app->router->get('/', [SiteController::class, 'home']);
 $app->router->get('/contact', 'contact');
 
@@ -38,7 +38,7 @@ $app->router->get('/profile', [AuthController::class, 'profile']);
 
 $app->run();
 
-//(05:06:55) Improve form widget with abstraction
+//05:12:18
 
 
 
