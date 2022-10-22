@@ -11,8 +11,6 @@ use app\models\ContactForm;
 class SiteController extends Controller
 {
 
-
-
    /*  
    его удаляют
    public function handleContact(Request $request)

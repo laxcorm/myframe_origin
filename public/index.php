@@ -24,9 +24,9 @@ $app  = new Application(dirname(__DIR__), $config);
 
 // п╟я─пЁя┐п╪п╣пҐя┌я▀ пҐп╣ п╦я│п©пЎп╩я▄пЇя┐я▌я┌я│я▐ п╡ п╪п╣я┌пЎпЄп╟я┘ п╨пЎпҐя┌я─пЎп╩п╩п╣я─п╟!!!
 $app->router->get('/', [SiteController::class, 'home']);
-$app->router->get('/contact', 'contact');
+$app->router->post('/contact', 'contact');
 
-$app->router->post('/contact', [SiteController::class, 'handleContact']);
+$app->router->post('/contact', [SiteController::class, 'contact']);//5:11:15 - замена и отказ от handleContact
 $app->router->get('/contact', [SiteController::class, 'contact']);
 
 $app->router->get('/login', [AuthController::class, 'login']);
@@ -38,7 +38,7 @@ $app->router->get('/profile', [AuthController::class, 'profile']);
 
 $app->run();
 
-//05:12:18
+//05:21:11
 
 
 
