@@ -6,6 +6,11 @@ use app\core\Session;
 
 class Application
 {
+ 
+const EVENT_BEFORE_REQUEST = 'beforeRequest';
+const EVENT_AFTER_REQUEST = 'afterRequest';
+protected array $eventlisteners = [];
+
     public string $layout = 'main';
     public string $userClass;
     public static $ROOT_DIR;
@@ -42,6 +47,7 @@ class Application
 
     public function run()
     {
+        $this->triggerEvent(self::EVENT_BEFORE_REQUEST);
         try {
             echo $this->router->resolve();
         } catch (\Exception $e) {
@@ -79,5 +85,18 @@ class Application
     static public function isGuest()
     {
         return !self::$app->user;
+    }
+
+    public function on($eventName, $callback)
+    {
+        $this->eventlisteners[$eventName][] = $callback;
+    }
+
+    public function triggerEvent($eventName)
+    {
+        $callbacks = $this->eventlisteners[$eventName] ?? [];
+        foreach ($callbacks as $callback) {
+            call_user_func($callback);
+        }
     }
 }
